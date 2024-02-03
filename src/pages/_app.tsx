@@ -1,3 +1,4 @@
+import { Footer } from "@/components";
 import "@/styles/globals.css";
 import { NEXT_SEO_DEFAULT } from "@/utils";
 import { DefaultSeo } from "next-seo";
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <DefaultSeo {...updatedSEO} />
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 }

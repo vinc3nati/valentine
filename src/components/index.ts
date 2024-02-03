@@ -1,1 +1,2 @@
-export { Valentine } from './Valentine';
+export { Footer } from "./Footer";
+export { Valentine } from "./Valentine";

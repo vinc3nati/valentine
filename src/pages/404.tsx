@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col gap-2 justify-center items-center">
+    <div className="flex flex-col gap-4 justify-center items-center min-h-screen">
       <h3 className="text-xl">Let&rsquo;s make this happen, shall we ? 🙈</h3>
       <Image
         src="https://res.cloudinary.com/randomwave45/image/upload/v1706987299/tenor_srrarh.gif"
