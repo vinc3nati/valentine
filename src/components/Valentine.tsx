@@ -1,14 +1,14 @@
 import { useWindowSize } from "@/hooks";
 import { CONVEY_MESSAGE } from "@/utils";
+import Image from "next/image";
 import { useState } from "react";
 import Confetti from "react-confetti";
 
 export const Valentine = () => {
-  const initialValue = {
+  const [buttonCount, setButtonCount] = useState({
     noBtnCount: 0,
     yesButtonCount: 0,
-  };
-  const [buttonCount, setButtonCount] = useState(initialValue);
+  });
   const { width, height } = useWindowSize();
 
   const handleNoBtnCount = () => {
@@ -24,23 +24,30 @@ export const Valentine = () => {
   const RenderText = () => {
     if (isChosen) return "Hurray, can't wait to see you! Ping me, please! 🎉";
     if (buttonCount.noBtnCount >= CONVEY_MESSAGE.length) return "Let's go 🥳";
-
     return CONVEY_MESSAGE[buttonCount.noBtnCount];
   };
 
   return (
     <section
-      className={`w-full h-full flex flex-col justify-center items-center text-center`}
+      className={`w-full h-full flex flex-col justify-center items-center text-center transition-all`}
     >
       {isChosen && <Confetti width={width} height={height} />}
-      <h1 className="text-2xl">Would You be my Valentine ?</h1>
-      <p className="text-red-600 text-center text-xl font-bold tracking-wider leading-6 my-5">
+      {!isChosen && (
+        <h1 className="text-2xl mb-5">Would you be my Valentine?</h1>
+      )}
+      <p className="text-red-600 text-center text-xl font-bold tracking-wider leading-6 mb-5">
         <RenderText />
       </p>
-
       <div className={`globe ${isChosen ? "active" : ""}`}>
-        <span className="drop-shadow-sm">Thank You for choosing me!</span>
+        <span className="drop-shadow-sm">Yayyyyy 🤩</span>
       </div>
+      <Image
+        src="https://res.cloudinary.com/randomwave45/image/upload/v1706987299/tenor_srrarh.gif"
+        width="350"
+        height="350"
+        alt="cheek pinch gif"
+        className={`${isChosen ? "inline-block" : "hidden"}`}
+      />
 
       {!isChosen && (
         <div className="flex gap-2 items-center flex-wrap justify-center">
