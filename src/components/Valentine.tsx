@@ -1,5 +1,5 @@
-import { useWindowSize } from "@/hooks";
-import { CONVEY_MESSAGE } from "@/utils";
+import { useAudio, useWindowSize } from "@/hooks";
+import { AUDIO_URL, CONVEY_MESSAGE } from "@/utils";
 import Image from "next/image";
 import { useState } from "react";
 import Confetti from "react-confetti";
@@ -10,6 +10,7 @@ export const Valentine = () => {
     yesButtonCount: 0,
   });
   const { width, height } = useWindowSize();
+  const { playing, togglePlayback } = useAudio(AUDIO_URL);
 
   const handleNoBtnCount = () => {
     setButtonCount((prev) => ({ ...prev, noBtnCount: prev.noBtnCount + 1 }));
@@ -17,6 +18,7 @@ export const Valentine = () => {
 
   const handleYesButtonCount = () => {
     setButtonCount((prev) => ({ ...prev, yesButtonCount: 1 }));
+    togglePlayback();
   };
 
   const isChosen = buttonCount.yesButtonCount > 0;
@@ -32,6 +34,17 @@ export const Valentine = () => {
       className={`w-full h-full flex flex-col justify-center items-center text-center transition-all`}
     >
       {isChosen && <Confetti width={width} height={height} />}
+      {isChosen && (
+        <button
+          className={`fixed top-2 right-2 text-xl p-2 border border-gray-400 rounded-md ${
+            !playing && "line-through"
+          }`}
+          title={playing ? "stop" : "play"}
+          onClick={togglePlayback}
+        >
+          &#127925;
+        </button>
+      )}
       {!isChosen && (
         <h1 className="text-2xl mb-5">Would you be my Valentine?</h1>
       )}

@@ -1,1 +1,2 @@
-export { useWindowSize } from './useWindowSize';
+export { useAudio } from "./useAudio";
+export { useWindowSize } from "./useWindowSize";
