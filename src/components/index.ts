@@ -1,2 +1,3 @@
 export { Footer } from "./Footer";
-export { Valentine } from "./Valentine";
+import Valentine from "./Valentine";
+export default Valentine;
